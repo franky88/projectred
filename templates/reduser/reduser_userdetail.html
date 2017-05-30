@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<h3>{{instance.get_short_name|title}} Portfolio's</h3>
+<hr>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="{% url 'portfolio:index' %}">Portfolio List</a></li>
+  	<li class="breadcrumb-item active">{{instance.get_short_name|title}} Portfolio's</li>
+</ol>
+<hr>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="card-columns">
+		  {% for portfolio in instance.portfolio_set.all %}
+		  <div class="card">
+		    <img class="card-img-top img-fluid" src="{{portfolio.image.url}}" alt="Card image cap">
+		    <div class="card-block">
+		      <h4 class="card-title"><a href="{% url 'portfolio:detail' portfolio.id %}">{{portfolio.art_name|title}}</a> <small>by: {{portfolio.user|title}}</small></h4>
+		      <p class="card-text">{{portfolio.short_des}}</p>
+		      <p class="card-text"><small class="text-muted">Category: {{portfolio.cat.cat_name|title}}</small></p>
+		      <hr>
+		      <p class="card-text"><small class="text-muted">Date posted: {{portfolio.timestamp}}</small></p>
+		    </div>
+		  </div>
+		  {% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<h3>{{instance.cat_name|title}} Portfolios</h3>
+<hr>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="{% url 'portfolio:index' %}">Portfolio List</a></li>
+  	<li class="breadcrumb-item active">{{instance.cat_name|title}}</li>
+</ol>
+<p>
+	Categories: |
+	{% for cat in catlist %}
+		<a href="{% url 'portfolio:catdetail' cat.id %}">{{cat.cat_name|title}}</a> |
+	{% endfor %}
+</p>
+<hr>
+<div class="row">
+	<div class="col-sm-12">
+		<div class="card-columns">
+		  {% for category in instance.portfolio_set.all %}
+		  <div class="card">
+		    <img class="card-img-top img-fluid" src="{{category.image.url}}" alt="Card image cap">
+		    <div class="card-block">
+		      <h4 class="card-title"><a href="{% url 'portfolio:detail' category.id %}">{{category.art_name|title}}</a> <small>by: {{category.user|title}}</small></h4>
+		      <p class="card-text">{{category.short_des}}</p>
+		      <p class="card-text"><small class="text-muted">Category: {{category.cat.cat_name|title}}</small></p>
+		      <hr>
+		      <p class="card-text"><small class="text-muted">Date posted: {{category.timestamp}}</small></p>
+		    </div>
+		  </div>
+		  {% endfor %}
+		  {% if request.user.is_authenticated %}
+		  <a href="{% url 'portfolio:addportfolio' %}" class="btn btn-primary btn-block">Add post</a>
+		  {% else %}
+		  <a href="{% url 'login:index' %}" class="btn btn-primary btn-block">Add post</a>
+		  {% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

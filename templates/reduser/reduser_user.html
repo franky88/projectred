@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<h4>Artist's Portfolio's and {{title|title}}</h4>
+<hr>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item active">{{title|title}}</li>
+</ol>
+{% if catlist %}
+<p>
+	Categories:
+	{% for cat in catlist %}
+		<a href="{% url 'portfolio:catdetail' cat.id %}">{{cat.cat_name|title}}</a> |
+	{% endfor %}
+</p>
+{% endif %}
+<hr>
+<div class="row">
+	<div class="col-sm-12">
+	{% for users in user %}
+		<h3><a href="{% url 'reduser:userdetail' users.id %}">{{users.get_full_name|title}} Portfolio's</a></h3>
+		<hr>
+		<p>Email Address: <a href="{% url 'reduser:userdetail' users.id %}">{{users.email}}</a></p>
+		<div class="row">
+			{% for name in users.portfolio_set.all %}
+			<div class="col-sm-3">
+				<div class="card">
+					<img class="card-img-top img-fluid" src="{{name.image.url}}" alt="Card image cap">
+					<div class="card-block">
+						<h4 class="card-title"><a href="{% url 'portfolio:detail' name.id %}">{{name.art_name|title}}</a></h4>
+						<p class="card-text">{{name.short_des}}</p>
+						<p class="card-text"><small class="text-muted">Posted: {{name.timestamp|timesince}} ago</small></p>
+					</div>
+				</div>
+				<br>
+			</div>
+			{% endfor %}
+		</div>
+		<hr>
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}

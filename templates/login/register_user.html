@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+
+<br>
+<h2>{{title|title}}</h2>
+<hr>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'login:index' %}">Login</a></li>
+    <li class="active breadcrumb-item">{{title|title}}</li>
+</ol>
+
+<div class="row">
+	<div class="col-sm-4">
+		<div class="well">
+			<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+				<h3>{{title|title}}</h3>
+				<hr>
+				{{form|crispy}}
+				<button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Register</button>
+				<a href="{% url 'login:index' %}" type="button" class="btn btn-danger"><i class="fa fa-times"></i> Cancel</a>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<div class="well">
+			<h3>Student Registration Procedures</h3>
+			<hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero harum ipsam odit quia fugit, alias, error eum excepturi cupiditate! Et accusamus velit id neque repudiandae exercitationem, officia, dolore commodi perferendis eius tempore odit molestias quisquam alias, deserunt magni excepturi mollitia! Ab dolorum perferendis beatae, harum tempora corporis nam enim, ipsa!</p>
+			<p>Ipsa dolores asperiores assumenda temporibus praesentium. Officiis rerum perspiciatis amet porro corporis, ducimus impedit, dolorem eos! Perspiciatis autem consectetur quos itaque voluptate praesentium natus beatae ullam numquam minima repellendus nihil fuga rerum mollitia, pariatur quod blanditiis quia modi. Eum omnis sunt, aliquam libero! Tempore iure iste, quam voluptatibus ab debitis.</p>
+			<p>Rem sed assumenda facere dolores ex voluptas corrupti ab voluptate incidunt exercitationem vitae id asperiores quidem in repellat, sapiente recusandae similique, repudiandae veritatis sit consectetur repellendus. Fugiat necessitatibus aliquam quibusdam in nisi excepturi nobis sequi sit facilis maxime aut laborum harum, dolores fuga, itaque ad, sunt sapiente, libero consequuntur assumenda.</p>
+		</div>
+	</div>
+{% endblock %}
+	
+</div>

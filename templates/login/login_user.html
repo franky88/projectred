@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-sm-3">
+		<form action=".?next={{ redirect_to }}" method="post">
+			{% csrf_token %}
+			<h3>Account Login</h3>
+			<div class="form-group">
+				<label for="Username">Username:</label>
+				<input type="text" name="username" placeholder="Username" class="form-control" required="required">
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" name="password" placeholder="Password" class="form-control" required="required">
+			</div>
+			<input type="submit" value="Login" class="btn btn-primary btn-block">
+			<hr>
+			<a href="{% url 'login:adduser' %}">Register</a>
+		</form>
+		<hr>
+	</div>
+	<div class="col-sm-9">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h1>Welcome to <b style="color: red;">Redpencil!</b></h1> 
+		    	<p>"Artist in Innovations and Creativity"</p>
+		    	<h3>News and Updates</h3>
+		    	<hr>
+		    	<p><span class="glyphicon glyphicon-cog"></span> Page under construction...</p>	
+			</div>
+		</div>
+		
+	</div>	
+</div>
+
+
+{% endblock %}

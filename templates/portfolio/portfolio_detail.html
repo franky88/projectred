@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<br>
+<h3>{{title|title}}</h3>
+<hr>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="{% url 'portfolio:index' %}">Portfolio List</a></li>
+  	<li class="breadcrumb-item active">{{title|title}}</li>
+</ol>
+
+
+
+<div class="row">
+	<div class="col-sm-8">
+		<div class="card mb-3">
+			<h5 class="card-header">
+				Art by: {{instance.user|title}}
+			</h5>
+			<a href="{{ instance.image.url }}"><img class="card-img-top" src="{{instance.image.url}}" alt="Card image cap"></a>
+			<hr>	
+			<div class="card-footer text-muted">
+				<small>Posted: {{instance.timestamp}}</small>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<h3>Art title: {{instance.art_name|upper}}</h3>
+		<hr>
+		<p><b>Description: </b><br>{{instance.short_des}}</p>
+		<hr>
+		<p>20 Comments | 100 Liked</p>
+		<hr>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Write comments...">
+			<span class="input-group-btn">
+				<button class="btn btn-primary" type="button">Submit</button>
+			</span>
+		</div>
+	</div>
+</div>
+{% endblock %}
