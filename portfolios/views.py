@@ -28,8 +28,8 @@ def portfolioCatDetail(request, pk):
 	}
 	return render(request, "portfolio/portfolio_catdetail.html", context)
 
-def portfolioDetail(request, pk):
-	instance = get_object_or_404(Portfolio, pk=pk)
+def portfolioDetail(request, slug=None):
+	instance = get_object_or_404(Portfolio, slug=slug)
 	context = {
 		"title": "Portfolio Informations",
 		"instance": instance,

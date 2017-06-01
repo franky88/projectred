@@ -29,7 +29,7 @@ class Portfolio(models.Model):
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 	def get_absolute_url(self):
-		return reverse("portfolio:detail", kwargs={"id": self.id})
+		return reverse("portfolio:detail", kwargs={"slug": self.slug})
 
 	def portfolio_name(self):
 		portname = "%s by: %s"%(self.art_name, self.user)

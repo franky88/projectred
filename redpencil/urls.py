@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include("portfolios.urls")),
+    url(r'^', include("portfolios.urls", namespace="portfolio")),
     url(r'^login/', include("login.urls")),
     url(r'^artists/', include("redusers.urls")),
 ]
